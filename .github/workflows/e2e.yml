@@ -23,7 +23,6 @@ jobs:
           parallel: true 
           # Records to Cypress Cloud
           record: true
-          parallel: true # Runs test in parallel using settings above
           start: npm run e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
