@@ -1,10 +1,5 @@
 describe('Category Filters', () => {
 
-    //ignore unhandled error in Git
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      return false;
-    });
-
     
   it('Cycle through filters and ensure they are working', () => {
     cy.visit('');

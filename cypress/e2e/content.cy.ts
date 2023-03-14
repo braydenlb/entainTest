@@ -2,6 +2,8 @@ import { RACING_CATEGORIES } from "../config/constants";
 
 
 describe('Page Content', () => {
+
+
   it('Should correctly display page title', () => {
     cy.visit('');
 
