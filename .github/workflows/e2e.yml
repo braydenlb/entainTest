@@ -10,16 +10,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-       - name: install packages
+      - name: install packages
         run: |
           npm install
-
       - name: Start server
         run: |
           npm run start &
           sh -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
