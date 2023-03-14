@@ -24,8 +24,8 @@ jobs:
           # Records to Cypress Cloud
           record: true
           run: |
-          rm -rf node_modules/.cache/babel-loader
-          npx run e2e
+            rm -rf node_modules/.cache/babel-loader
+            npx run e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
