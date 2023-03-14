@@ -22,7 +22,7 @@ jobs:
         with:
           # Records to Cypress Cloud
           record: true
-          start: npm run e2e
+          start: npx run e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
