@@ -3,10 +3,7 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false 
-      matrix:
-        containers: [1, 2] 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,8 +17,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          # Runs test in parallel using settings above
-          parallel: true 
           # Records to Cypress Cloud
           record: true
           start: npm run e2e
