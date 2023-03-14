@@ -2,11 +2,15 @@ name: Cypress Tests
 on: [push]
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
       - name: Remove node_modules and cache
         run: |
           rm -rf node_modules
@@ -23,9 +27,11 @@ jobs:
         with:
           # Records to Cypress Cloud
           record: true
-          run: |
-            rm -rf node_modules/.cache/babel-loader
-            npx run e2e
+          command-prefix: npx
+          ci-build-id: ${{ github.run_id }}
+          start: npm run start
+          wait-on: http://localhost:3000
+          runTests: npm run e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
