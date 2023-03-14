@@ -1,22 +1,16 @@
-import { defineConfig } from "cypress";
-
-module.exports = {
-  projectId: "ysm2wi",
-  // The rest of the Cypress config options go here...
-}
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://localhost:3000/",
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: 'http://localhost:3000',
+    env: {
+        projectId: 'ysm2wi',
+      },
+    fixturesFolder: 'cypress/fixtures/*',
+    supportFile: 'cypress/support/component.ts',
+    specPattern: 'cypress/e2e/*'
   },
+})
 
-  component: {
-    devServer: {
-      framework: "react",
-      bundler: "webpack",
-    },
-  },
-});
+
+
