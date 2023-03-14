@@ -65,7 +65,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "e2e": "npm run e2e"
+    "e2e": "cypress run --config-file cypress.config.ts --env testingType=e2e"
   },
   "eslintConfig": {
     "extends": [
