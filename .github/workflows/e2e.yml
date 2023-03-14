@@ -15,6 +15,7 @@ jobs:
         run: rm -rf node_modules && npm ci --verbose
       - name: Start server
         run: |
+          rm -rf node_modules/.cache/babel-loader
           npm run start &
           sh -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
       - name: Cypress run
