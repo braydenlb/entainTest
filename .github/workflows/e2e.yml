@@ -12,7 +12,7 @@ jobs:
           rm -rf node_modules
           rm -rf ~/.npm
       - name: Install packages
-        run: npm ci
+        run: npm ci --verbose
       - name: Start server
         run: |
           npm run start &
