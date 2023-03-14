@@ -3,26 +3,35 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    env:
+      CI: true
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: install packages
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
         run: |
-          rm -rf node_modules/.cache/babel-loader
-          npm install
+          npm ci
 
       - name: Start server
         run: |
           npm run start &
           sh -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
+
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          # Records to Cypress Cloud
           record: true
           start: npm run e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           GITHUB_TOKEN: ${{ secrets.BBQE_TOKEN }}
