@@ -1,5 +1,22 @@
 # Entain Automation Coding Task
 
+
+
+
+
+
+PROJECT TRACKING WORKSPACE: https://trello.com/invite/b/88VJlDsq/ATTIbf10fb9facbd288d384f29a46c4ab34811C6CF97/entain
+
+TEST REPORTING: https://airtable.com/shrDlxDopQZ5WL1bZ 
+
+
+
+
+
+
+
+
+
 Thank you for your interest in the QA Engineer position here at Entain. As a part of our hiring process, we have prepared the following technical task to get a better understanding of your skills, thought process and methodology.
 
 <b>Please read the following details carefully.</b>

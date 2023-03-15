@@ -1,0 +1,39 @@
+name: Cypress Tests
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: Remove node_modules and cache
+        run: |
+          rm -rf node_modules
+          rm -rf ~/.npm
+      - name: remove existing packages
+        run: rm -rf node_modules
+      - name: Install missing package
+        run: npm install ansi-html-community events --save
+
+      - name: Start server
+        run: |
+          npm install
+          npm run start &
+          sh -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          # Records to Cypress Cloud
+          record: true
+          command-prefix: npx
+          ci-build-id: ${{ github.run_id }}
+          runTests: npm run e2e --headless
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          GITHUB_TOKEN: ${{ secrets.BBQE_TOKEN }}
