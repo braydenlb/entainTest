@@ -20,6 +20,7 @@ jobs:
       - name: Start server
         run: |
           rm -rf node_modules/.cache/babel-loader
+          npm install html-entities
           npm run start &
           sh -c 'until curl -sSf http://localhost:3000 > /dev/null; do sleep 1; done'
       - name: Cypress run
