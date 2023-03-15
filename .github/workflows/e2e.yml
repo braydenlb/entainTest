@@ -18,7 +18,8 @@ jobs:
       - name: remove existing packages
         run: rm -rf node_modules
       - name: Install missing package
-        run: npm install ansi-html-community
+        run: npm install ansi-html-community events --save
+
       - name: Start server
         run: |
           npm install
