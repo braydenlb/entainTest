@@ -5,9 +5,9 @@ describe('Page Content', () => {
 
 
   it('Should correctly display page title', () => {
-   // cy.visit('');
+   cy.visit('');
 
-  //   cy.get('[data-testid=page-title]').contains('Next To Go Races').and('be.visible');
+    cy.get('[data-testid=page-title]').contains('Next To Go Races').and('be.visible');
   });
 
   it('Should have all filters checked by default', () => {
